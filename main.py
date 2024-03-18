@@ -1,6 +1,6 @@
 from machine import Pin, SoftI2C
-import SSD1306
-from DebugTools.displayConnectTester import I2CDeviceTester
+import Drivers.SSD1306 as SSD1306
+from DebugTools.DeviceConnectionTester import I2CDeviceTester
 
 
 tester = I2CDeviceTester(22, 21)
