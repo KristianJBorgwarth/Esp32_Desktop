@@ -10,7 +10,6 @@ i2c = SoftI2C(scl=Pin(22), sda=Pin(21))
 
 oled_width = 128
 oled_height = 64
-# Use the correct case for SSD1306
 oled = SSD1306.SSD1306_I2C(oled_width, oled_height, i2c)
 
 oled.text('God save me', 0, 0)
