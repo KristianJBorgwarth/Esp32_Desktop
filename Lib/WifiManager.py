@@ -1,6 +1,7 @@
 import network
 import socket
 import time
+from Configuration.ConfigurationManager import ConfigManager 
 
 class WifiManager:
     def __init__(self, OledHandler):
@@ -8,6 +9,7 @@ class WifiManager:
         self.station = network.WLAN(network.STA_IF)
         self.oled = OledHandler
         self.StartAp()
+        self.config = ConfigManager()
         
     
     def StartAp(self):
@@ -72,8 +74,9 @@ class WifiManager:
 
             self.handle_print("Attempting to connect...")
             time.sleep(1)
-
+        
         self.handle_print("Successfully connected to: {}".format(ssid))
+        self.config.set_wifi_credentials(ssid, password)
         return True
 
     def serve_form(self, conn):
