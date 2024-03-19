@@ -3,16 +3,17 @@ import socket
 import time
 
 class WifiManager:
-    def __init__(self):
+    def __init__(self, OledHandler):
         self.ap = network.WLAN(network.AP_IF)
         self.station = network.WLAN(network.STA_IF)
+        self.oled = OledHandler
         self.StartAp()
         
     
     def StartAp(self):
         self.ap.active(True)
         self.ap.config(essid="ESP32-AP", password="setup69420")
-        print("AP started. Connect to WIFI: ESP32-AP with password: setup69420")
+        self.handle_print("AP started. Connect to WiFi:ESP32-AP Password:69420")
         
     
     def RunServer(self):
@@ -57,7 +58,7 @@ class WifiManager:
     def try_connect_wifi(self, ssid, password):
         self.station.active(True)
         self.station.connect(ssid, password)
-        print("Trying to connect to WiFi network: {}".format(ssid))
+        self.handle_print("Trying to connect to WiFi network: {}".format(ssid))
 
         # Set a timeout for the connection attempt
         timeout = 10  # 10 seconds timeout
@@ -66,13 +67,13 @@ class WifiManager:
         # Wait for connection with timeout
         while not self.station.isconnected():
             if time.ticks_diff(time.ticks_ms(), start_time) > (timeout * 1000):
-                rint("Failed to connect within the timeout period.")
+                self.handle_print("Failed to connect within the timeout period.")
                 return False
 
-            print("Attempting to connect...")
+            self.handle_print("Attempting to connect...")
             time.sleep(1)
 
-        print("Successfully connected to: {}".format(ssid))
+        self.handle_print("Successfully connected to: {}".format(ssid))
         return True
 
     def serve_form(self, conn):
@@ -84,3 +85,6 @@ class WifiManager:
         conn.send('Connection: close\n\n')
         conn.sendall(response)
     
+    def handle_print(self, msg):
+        self.oled.DisplayMessage(msg)
+        print(msg)
