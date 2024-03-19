@@ -3,9 +3,10 @@ import socket
 import time
 
 class WifiManager:
-    def __init__(self):
+    def __init__(self, oled_display=None):
         self.ap = network.WLAN(network.AP_IF)
         self.station = network.WLAN(network.STA_IF)
+        self.oled = oled_display
         self.StartAp()
         
     
