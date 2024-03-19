@@ -14,5 +14,5 @@ oled = SSD1306.SSD1306_I2C(oled_width, oled_height, i2c)
 
 oled.text('God save me', 0, 0)
 oled.text("from this hell", 0, 10)
-
+oled.text("I'm in", 0, 20)
 oled.show()
