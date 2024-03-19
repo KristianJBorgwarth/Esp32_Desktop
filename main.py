@@ -2,6 +2,7 @@ from DebugTools.DeviceConnectionTester import I2CDeviceTester
 from DebugTools.WifiConnectionTester import WifiConnectionTester
 from Lib.WifiManager import WifiManager
 from Lib.ModuleHandlers import OledHandler
+from Lib import ugit
 
 oled_handler = OledHandler()
 
@@ -13,3 +14,5 @@ wifi_manager.RunServer()
 
 wifiTester = WifiConnectionTester()
 wifiTester.CheckWifiConnection()
+
+ugit.pull_all(isConnected = true)
