@@ -89,5 +89,6 @@ class WifiManager:
         conn.sendall(response)
     
     def handle_print(self, msg):
+        print("called handle_print")
         self.oled.DisplayMessage(msg)
         print(msg)
