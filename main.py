@@ -15,5 +15,4 @@ wifi_manager.RunServer()
 wifiTester = WifiConnectionTester()
 wifiTester.CheckWifiConnection()
 
-oled_handler.DisplayMessage("You are god")
 ugit.pull_all(isconnected = True)
