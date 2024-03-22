@@ -9,8 +9,8 @@ oled_handler = OledHandler()
 tester = I2CDeviceTester(22, 21)
 tester.check_display_connection()
 
-wifi_manager = WifiManager(oled_handler)
-wifi_manager.RunServer()
+wm = WifiManager("GodBless","696969420")
+wm.connect()
 
 wifiTester = WifiConnectionTester()
 wifiTester.CheckWifiConnection()
